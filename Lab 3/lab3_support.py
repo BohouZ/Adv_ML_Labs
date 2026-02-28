@@ -2,12 +2,12 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-# from torchsummary import summary
+from torchsummary import summary
 
 from torchvision.datasets import FashionMNIST, MNIST
 from torchvision.transforms import Compose, Normalize, ToTensor
 
-# from fastprogress.fastprogress import master_bar, progress_bar
+from fastprogress.fastprogress import master_bar, progress_bar
 
 import matplotlib.pyplot as plt
 
@@ -82,7 +82,7 @@ def gradient_descent(model, train_loader, valid_loader, optimizer=Adam, learning
     opt = optimizer(model.parameters(), learning_rate)
 
     # A master bar for fancy output progress
-    mb = range(num_epochs)
+    mb = master_bar(range(num_epochs))
 
     # Information for plots
     mb.names = ["Train Loss", "Valid Loss"]
@@ -102,7 +102,7 @@ def gradient_descent(model, train_loader, valid_loader, optimizer=Adam, learning
 
         train_loss_mean = 0
 
-        for batch in range(num_train_batches):
+        for batch in progress_bar(range(num_train_batches), parent=mb):
 
             # Grab the batch of data and send it to the correct device
             train_X, train_Y = next(train_dataiterator)
