@@ -167,7 +167,7 @@ ML/
 
 # mkdocs documentation
 /site
-
+.jupyter_ystore.db
 # mypy
 .mypy_cache/
 .dmypy.json
