@@ -12,7 +12,7 @@ from fastprogress.fastprogress import master_bar, progress_bar
 import matplotlib.pyplot as plt
 
 # Use the GPUs if they are available
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cpu"
 print(f"Using '{device}' device.")
 
 # Mini-Batch SGD hyperparameters
